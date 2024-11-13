@@ -119,7 +119,7 @@ clsMainWindow::clsMainWindow(const char *uWindowTitle)
 		M_layers->AddItem( layers[0] );
 		M_layers->AddSeparatorItem();
 						// Nullifying pointers to other layer items in the menu "Layers"
-		for (i=1; i<=MAX_LAYERS+1; i++) {
+		for (i=1; i<=MAX_LAYERS; i++) {
 			layers[i] = NULL;
 		}
 		
@@ -1314,9 +1314,10 @@ int clsMainWindow::DrawImage(void* _data) {
 				else {
 					sprintf (text, "Unknown");
 				}
-				tis->layers[overall_number] = new LayerItem (text, overall_number);
-				if (tis->layers[overall_number-1] != NULL) {
-					tis->M_layers->AddItem(tis->layers[overall_number-1]);
+				int position = overall_number;
+				tis->layers[position] = new LayerItem (text, position);
+				if (tis->layers[position-1] != NULL) {
+					tis->M_layers->AddItem(tis->layers[position-1]);
 				}
 				delete text;
 				
