@@ -1118,7 +1118,8 @@ void clsMainWindow::Rebuild_Layers (void) {
 	}
 }
 
-int32 clsMainWindow::DrawImage(clsMainWindow* tis) {
+int clsMainWindow::DrawImage(void* _data) {
+	clsMainWindow* tis = (clsMainWindow*)_data;
 	int m_ang;
 	char* text;
 //	int i;
@@ -1449,8 +1450,8 @@ void DrawView::Draw(void) {
 }
 	
 
-int32 DrawView::Rewrite_image (DrawView*  data) {
-
+int DrawView::Rewrite_image (void* _data) {
+	DrawView* data = (DrawView*)_data;
 	rgb_color Transparent;
 	memcpy (&Transparent, &B_TRANSPARENT_MAGIC_RGBA32, 4);
 
@@ -1477,7 +1478,7 @@ int32 DrawView::Rewrite_image (DrawView*  data) {
 			drawer->SetDrawingMode(B_OP_OVER);
 			for (i=0; i<MAX_LAYERS-1; i++) {
 					// If current layer is not empty
-				if ( (data->layers[i] != NULL) && ( (int )data->layers[i] != 0x19) ) {
+				if ( (data->layers[i] != NULL) && ( (intptr_t )data->layers[i] != 0x19) ) {
 						// Adding it to the bitmap, in B_OP_OVER mode
 					drawer->DrawBitmap (data->layers[i]);
 					drawer->Sync();

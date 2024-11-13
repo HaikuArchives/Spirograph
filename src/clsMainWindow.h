@@ -76,7 +76,7 @@
 		virtual void Draw(BRect );
 		virtual void Draw(void);
 		
-		static int32 Rewrite_image (DrawView* );
+		static int Rewrite_image (void* );
 		
 		BBitmap* image;
 		BBitmap* bgimage;
@@ -175,7 +175,7 @@
 		long threadID;
 
 		
-		static int32 DrawImage (clsMainWindow *);		
+		static int DrawImage (void *);		
 		void SaveImage (BMessage *message);
 		void SetImage (BMessage *message);
 		clsMainWindow(const char *uWindowTitle);
